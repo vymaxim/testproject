@@ -1,0 +1,36 @@
+{% load static %}
+<link href="{% static 'css/style.css' %}" rel="stylesheet"/>
+
+
+<div class="table">
+    <h2>Список сотрудников</h2>
+    <a href="{% url 'add_user' %}">Добавить</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Возраст</th>
+                <th>Пол</th>
+                <th>Отдел</th>
+                <th>Язык</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users_list %}
+                <tr>
+                    <td>{{ user.name }}</td>
+                    <td>{{ user.surname }}</td>
+                    <td>{{ user.age }}</td>
+                    <td>{{ user.gender }}</td>
+                    <td>{{ user.departament }}</td>
+                    <td>{{ user.programming_language }}</td>
+                    <td><a href="{% url 'edit_user' user.id %}">Редактировать</a><br>
+                    <a href="{% url 'delete_user' user.id %}">Удалить</a></td>
+
+                </tr>
+            {% endfor %}
+        </tbody>
+
+</div>
